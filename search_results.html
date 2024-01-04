@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body{
+            background-color: lightgray;
+        }
+
+        /* Add your styles for the two-column layout here */
+        .results-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+    
+        .result-card {
+            width: 45%; /* Adjust the width as needed */
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd; /* Add a border for better separation */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #242424; /* Background color for each result card */
+            /*text-decoration: none;  Remove default link styling */
+            /* color: #333;  Set text color for better visibility */
+        }
+    
+        .no-results {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+    
+        /* Add styles for the "View All Players" button */
+        .view-all-players {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1; /* Ensure it's above other elements */
+        }
+    
+        /* Add styles for the "Home" button */
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: calc(50px + 100px); /* Adjust the right position based on the width of the view-all-players button */
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1; /* Ensure it's above other elements */
+        }
+    </style>
+</head>
+<body>
+    <!-- Add home button to go back to the home page -->
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+
+    <!-- Add link to view all players -->
+    <a href="{{ url_for('all_players') }}" class="view-all-players">View All Players</a>
+
+    <h1>Search Results</h1>
+    <form method="post" action="/search">
+        <label for="player_name">Search Players:</label>
+        <input type="text" id="player_name" name="player_name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <div class="results-container">
+            {% for result in results %}
+                <a href="{{ url_for('player_details', player_id=result[0]) }}" class="result-card">
+                    <h2>{{ result[1] }}</h2>
+                    <p>Club: {{ result[3] }}</p>
+                    <p>Position: {{ result[4] }}</p>
+                    <!-- Add more details as needed -->
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-results">No search results found.</p>
+    {% endif %}
+</body>
+</html>

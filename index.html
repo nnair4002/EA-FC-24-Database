@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title Here</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Add your custom styles here */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 100% viewport height */
+            margin: 0; /* Remove default margin */
+            background-color: lightgray;
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Adjust the margin as needed */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label, input, button {
+            margin-bottom: 10px; /* Adjust the margin as needed */
+        }
+
+        .view-all-players {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Your EA FC24 DataBase</h1>
+
+    <form method="post" action="/search">
+        <label for="player_name">Search Men's Players:</label>
+        <input type="text" id="player_name" name="player_name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Add link to view all players -->
+    <a href="{{ url_for('all_players') }}" class="view-all-players">View All Players</a>
+</body>
+</html>

@@ -1,0 +1,63 @@
+/* Add some basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+    text-align: center; /* Center the form in the middle of the screen */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, button {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #1e88e5;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add your styles for the two-column layout here */
+.players-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align items to the start (left) */
+}
+
+.player-card {
+    width: 45%; /* Adjust the width as needed */
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd; /* Add a border for better separation */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Background color for each player card */
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Players</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body{
+            background-color: lightgray;
+        }
+
+        /* Add your styles for the two-column layout here */
+        .players-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .player-card {
+            width: 45%; /* Adjust the width as needed */
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd; /* Add a border for better separation */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #242424; /* Background color for each player card */
+        }
+
+        /* Add styles for the home button */
+        .home-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add home button to go back to the home page -->
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+
+    <h1>All Players</h1>
+    <form method="post" action="/search">
+        <label for="player_name">Search Players:</label>
+        <input type="text" id="player_name" name="player_name" required>
+        <button type="submit">Search</button>
+    </form>
+    
+    <div class="players-container">
+        {% for player in players %}
+            <a href="{{ url_for('player_details', player_id=player[0]) }}" class="player-card">
+                <h2>{{ player[1] }}</h2>
+                <p>Club: {{ player[3] }}</p>
+                <p>Position: {{ player[4] }}</p>
+                <!-- Add more details as needed -->
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
